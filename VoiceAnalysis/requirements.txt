@@ -1,0 +1,31 @@
+azure-cognitiveservices-speech==1.25.0
+azure-core==1.26.3
+azure-identity==1.12.0
+azure-storage-blob==12.14.1
+
+git+https://github.com/huggingface/datasets.git@db7da0a3425a15cdf792093fa68
+
+git+https://github.com/huggingface/transformers.git@c836f77266be9ace47bff472f63caf71c0d11333
+
+kobert-tokenizer @ git+https://github.com/SKTBrain/KOBERT.git@47a69af87928fc24e20f571fe10c3cc9dd9af9a3#subdirectory=kobert_hf
+
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl
+
+transformers @ git+https://github.com/huggingface/transformers.git@c836f77266be9ace47bff472f63caf71c0d11333
+
+sentence-transformers==2.2.2
+sentencepiece==0.1.97
+
+keybert==0.7.0
+
+kiwipiepy==0.14.1
+kiwipiepy-model==0.14.0
+kiwisolver==1.4.4
+
+soundfile==0.11.0
+
+torchaudio==0.13.1
+
+pydub==0.25.1
+
+flask==2.2.3
