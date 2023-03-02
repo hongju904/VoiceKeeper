@@ -42,12 +42,10 @@
 ## ⚡감정 분류 모델
 ▶ 음성 감정 분류
 
-✔ 음성 특성 추출
-
-✔ Spectrogram
-
 ✔ wav2vec2.0
-
+- Facebook wav2vec2.0 전이학습 모델
+- Self-Supervised Learning
+- Fine-Tuning
 - Positive와 Angry 잘 분류
 - Accuracy: 0.75
 
@@ -62,7 +60,7 @@
 ▶ 음성 + 텍스트 멀티 모달 
 
 ✔ wav2vec2.0 + BERT
-- 모델 각각의 잘 감지하는 감정에 따라 가중치 부여
+- 각 모델이 잘 감지하는 감정에 따라 가중치 부여
 - Accuracy: 0.82
 
 ---
@@ -126,21 +124,54 @@
 ---
 
 ## 🧑‍💻역할
-**성시열**()
+**성시열**(https://github.com/sungsiyul)
+- Product Manager
+- 음성 감정 분류 모델
+- Cloud 서버 VM 네트워킹
 
 **김지환**([https://github.com/hongju904](https://github.com/hongju904))
 - Android 앱 UI/UX 개발 ([구현 내용](https://velog.io/@hongju904/VoiceKeeper-app-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D))
 - Cloud 서버와 Android 클라이언트 HTTP 통신
 
 **전민기**(https://github.com/mk9165)
-- 텍스트 감성 분류 모델
+- 텍스트 감정 분류 모델
 - 대화 요약, 키워드 추출
 
-**최형준**()
+**최형준**(https://github.com/junhjun)
+- 음성 감정 분류 모델
+- 음성 + 텍스트 멀티 모달
+- Cloud 서버 VM 네트워킹
 
 ---
 
 ## 🧐문제점 및 해결 내용
+### 🔊 음성 감정 분류
 
+1️⃣ **첫 번째 시도: 특징 벡터 모델**
+- 음성에서 같은 시간 간격의 특징 벡터 추출
+- Zero Crossing Rate, Chroma STFT, Mel Spectrogram, MFCC, RMS
+- 1D CNN
+- [Reference](https://www.kaggle.com/code/shivamburnwal/speech-emotion-recognition)
 
+🔍 **결과**
+- 특정 감정의 민감도 낮음(angry, sad)
+- 특징 벡터 추출 시 오랜 시간 소요 → 특징 벡터 추가 실패
 
+2️⃣ **두 번째 시도: 스펙트로그램 이미지 모델**
+- 음성에서 같은 시간 간격의 스펙트로그램 이미지 추출
+- 시간과 주파수에 따른 진폭의 변화 시각화 기법
+- 2D CNN(VGG13)
+- [Reference](https://github.com/HanNayeoniee/Trauma-Detector)
+
+🔍 **결과**
+- 전반적인 정확도 낮음
+- 이미지 추출 시 오랜 시간 소요
+- 층이 깊은 모델 구조 → 과적합 발생
+
+3️⃣ **세 번째 시도: wav2vec2.0**
+- 자기지도학습으로 대량 데이터 학습한 효과
+- [Reference](https://huggingface.co/harshit345/xlsr-wav2vec-speech-emotion-recognition)
+
+🔍 **결과**
+- 감정 분류의 정확도 및 분석속도 개선
+- 라벨링 된 음성 데이터의 부족함 해결
